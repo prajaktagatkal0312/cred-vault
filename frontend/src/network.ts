@@ -1,4 +1,4 @@
-import { FetchZkConfigProvider } from '@midnight-ntwrk/midnight-js-fetch-zk-config-provider';
+﻿import { FetchZkConfigProvider } from '@midnight-ntwrk/midnight-js-fetch-zk-config-provider';
 import { indexerPublicDataProvider } from '@midnight-ntwrk/midnight-js-indexer-public-data-provider';
 import { type MidnightProviders, type PrivateStateProvider } from '@midnight-ntwrk/midnight-js-types';
 import { httpClientProofProvider } from '@midnight-ntwrk/midnight-js-http-client-proof-provider';
@@ -7,7 +7,7 @@ class InMemoryPrivateStateProvider implements PrivateStateProvider<string, any> 
   private states = new Map<string, any>();
   private signingKeys = new Map<string, any>();
   
-  async setContractAddress(address: string): Promise<void> {}
+  async setContractAddress(_address: string): Promise<void> {}
   async set(privateStateId: string, privateState: any): Promise<void> {
     this.states.set(privateStateId, privateState);
   }
@@ -45,7 +45,7 @@ export const NETWORK_CONFIG = {
   proofServer: import.meta.env.VITE_MIDNIGHT_PROOF_SERVER_URL || 'http://127.0.0.1:6300',
 };
 
-export const getMidnightProviders = (accountId: string = 'default-account'): Partial<MidnightProviders> => {
+export const getMidnightProviders = (_accountId: string = 'default-account'): Partial<MidnightProviders> => {
   // In the browser, we fetch the ZK config from a static URL, or just use the local vite dev server to serve it.
   // The contract artifacts should be placed in the public directory of the frontend, e.g. /contract/
   const zkConfigProvider = new FetchZkConfigProvider(
@@ -63,3 +63,4 @@ export const getMidnightProviders = (accountId: string = 'default-account'): Par
     privateStateProvider: new InMemoryPrivateStateProvider()
   };
 };
+

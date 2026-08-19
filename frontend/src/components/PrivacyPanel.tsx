@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { Shield, EyeOff, Lock } from 'lucide-react';
+﻿import { Shield, EyeOff, Lock } from 'lucide-react';
 
 export const PrivacyPanel = () => {
   return (
@@ -43,3 +42,4 @@ export const PrivacyPanel = () => {
     </div>
   );
 };
+
