@@ -4,6 +4,12 @@
 
 CredVault is a confidential credentials decentralized application built on the **Midnight Network (Preview Testnet)**. It allows issuers to grant credentials to holders without exposing the holder's identity or the specifics of the credential to the public ledger.
 
+## Live Demo
+
+[https://cred-vault-teal.vercel.app](https://cred-vault-teal.vercel.app)
+
+*Note: the deployed frontend requires a local Midnight Proof Server running at http://127.0.0.1:6300 to complete Deploy -> Issue -> Verify. See Setup instructions below to run one locally.*
+
 ## Privacy Model
 
 CredVault leverages Midnight's zero-knowledge circuits (Compact) to strictly enforce what data is public and what remains private.
@@ -59,4 +65,7 @@ cd frontend
 npm run dev
 \\\
 Open \http://localhost:5173\ and connect your Lace Wallet to the **Preview** network.
+
+
+
 
