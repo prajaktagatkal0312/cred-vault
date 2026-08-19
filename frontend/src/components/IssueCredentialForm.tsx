@@ -66,9 +66,12 @@ export const IssueCredentialForm: React.FC<{ contractAddress: string }> = ({ con
         salt,
       });
 
-      const contract = await findDeployedContract(providers, {
+            const contract = await findDeployedContract(providers, {
         contractAddress,
-        compiledContract,
+        // @ts-expect-error — Midnight SDK v4.1.1 type defs expect CompiledAssetsPath=never,
+// but compactc-generated contracts always produce CompiledAssetsPath. Safe at runtime;
+// tracked as known SDK type limitation.
+          compiledContract,
         privateStateId: 'cred-vault-private-state',
       });
 
@@ -181,5 +184,7 @@ export const IssueCredentialForm: React.FC<{ contractAddress: string }> = ({ con
     </div>
   );
 };
+
+
 
 

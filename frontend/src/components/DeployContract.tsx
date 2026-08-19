@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useWallet } from '../hooks/useWallet';
 import { buildWalletAdapter } from '../walletAdapter';
 import { getMidnightProviders } from '../network';
@@ -56,7 +56,10 @@ export const DeployContract: React.FC<{
         witnesses as any
       );
 
-      const deployPromise = deployContract(providers, {
+            const deployPromise = deployContract(providers, {
+        // @ts-expect-error — Midnight SDK v4.1.1 type defs expect CompiledAssetsPath=never,
+// but compactc-generated contracts always produce CompiledAssetsPath. Safe at runtime;
+// tracked as known SDK type limitation.
         compiledContract,
         privateStateId: 'cred-vault-private-state',
         initialPrivateState: {
@@ -126,8 +129,11 @@ export const DeployContract: React.FC<{
         salt: new Uint8Array(32),
       });
 
-      const contract = await findDeployedContract(providers, {
+            const contract = await findDeployedContract(providers, {
         contractAddress: address,
+        // @ts-expect-error — Midnight SDK v4.1.1 type defs expect CompiledAssetsPath=never,
+// but compactc-generated contracts always produce CompiledAssetsPath. Safe at runtime;
+// tracked as known SDK type limitation.
         compiledContract,
         privateStateId: 'cred-vault-private-state',
       });
@@ -157,7 +163,7 @@ export const DeployContract: React.FC<{
   return (
     <div className="relative bg-cv-surface border border-cv-border rounded-md p-6 sm:p-8 shadow-2xl mb-8">
       <div className="absolute -top-3 left-4 bg-cv-surface px-2 text-[10px] font-mono font-bold text-cv-text-secondary uppercase tracking-widest border border-cv-border border-b-0 rounded-t-sm">
-        FILE 01 — DEPLOY
+        FILE 01 â€” DEPLOY
       </div>
       
       <div className="mb-8">
@@ -227,3 +233,5 @@ export const DeployContract: React.FC<{
     </div>
   );
 };
+
+
