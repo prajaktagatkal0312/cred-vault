@@ -1,6 +1,6 @@
 ﻿# CredVault - Confidential Credentials dApp
 
-![CI/CD](https://github.com/your-username/credvault/actions/workflows/ci.yml/badge.svg)
+[![CI/CD](https://github.com/prajaktagatkal0312/cred-vault/actions/workflows/ci.yml/badge.svg)](https://github.com/prajaktagatkal0312/cred-vault/actions/workflows/ci.yml)
 
 CredVault is a confidential credentials decentralized application built on the **Midnight Network (Preview Testnet)**. It allows issuers to grant credentials to holders without exposing the holder's identity or the specifics of the credential to the public ledger.
 
@@ -59,3 +59,4 @@ cd frontend
 npm run dev
 \\\
 Open \http://localhost:5173\ and connect your Lace Wallet to the **Preview** network.
+
