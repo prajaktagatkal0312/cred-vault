@@ -1,0 +1,63 @@
+pragma language_version >= 0.23;
+
+import CompactStandardLibrary;
+
+// ============================================================
+// PUBLIC LEDGER STATE — visible on the Midnight blockchain
+// ============================================================
+export ledger credentials: Map<Bytes<32>, Boolean>;
+export ledger credentialCount: Counter;
+export ledger issuers: Map<Bytes<32>, Boolean>;
+
+// ============================================================
+// PRIVATE WITNESS DECLARATIONS — resolved locally, never on-chain
+// ============================================================
+witness credentialType(): Bytes<32>;
+witness holderSecret(): Bytes<32>;
+witness issuerSecret(): Bytes<32>;
+witness salt(): Bytes<32>;
+
+export circuit registerIssuer(issuerPublicKey: Bytes<32>): [] {
+    assert(!issuers.member(disclose(issuerPublicKey)), "Issuer already registered");
+    issuers.insert(disclose(issuerPublicKey), true);
+}
+
+export circuit issueCredential(): [] {
+    const credType = credentialType();
+    const holder = holderSecret();
+    const issuer = issuerSecret();
+    const s = salt();
+
+    const commitment = persistentCommit<Bytes<32>>(credType, s);
+
+    assert(!credentials.member(commitment), "Credential already exists");
+
+    credentials.insert(disclose(commitment), true);
+    credentialCount.increment(1);
+}
+
+export circuit verifyCredential(): [] {
+    const credType = credentialType();
+    const holder = holderSecret();
+    const issuer = issuerSecret();
+    const s = salt();
+
+    const commitment = persistentCommit<Bytes<32>>(credType, s);
+
+    assert(credentials.member(commitment), "Credential does not exist");
+    assert(credentials.lookup(commitment), "Credential has been revoked");
+}
+
+export circuit revokeCredential(): [] {
+    const credType = credentialType();
+    const holder = holderSecret();
+    const issuer = issuerSecret();
+    const s = salt();
+
+    const commitment = persistentCommit<Bytes<32>>(credType, s);
+
+    assert(credentials.member(commitment), "Credential does not exist");
+    assert(credentials.lookup(commitment), "Credential already revoked");
+
+    credentials.insert(disclose(commitment), disclose(false));
+}
