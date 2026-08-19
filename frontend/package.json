@@ -1,0 +1,44 @@
+﻿{
+    "name":  "cred-vault-frontend",
+    "private":  true,
+    "version":  "0.0.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "vite",
+                    "build":  "tsc \u0026\u0026 vite build",
+                    "lint":  "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+                    "preview":  "vite preview",
+                    "test":  "vitest run"
+                },
+    "dependencies":  {
+                         "@midnight-ntwrk/compact-runtime":  "^0.16.0",
+                         "@midnight-ntwrk/dapp-connector-api":  "^4.0.1",
+                         "@midnight-ntwrk/midnight-js-contracts":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-dapp-connector-proof-provider":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-fetch-zk-config-provider":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-http-client-proof-provider":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-indexer-public-data-provider":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-level-private-state-provider":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-network-id":  "^4.1.1",
+                         "@midnight-ntwrk/midnight-js-protocol":  "^4.1.1",
+                         "buffer":  "^6.0.3",
+                         "lucide-react":  "^0.344.0",
+                         "react":  "^18.2.0",
+                         "react-dom":  "^18.2.0"
+                     },
+    "devDependencies":  {
+                            "@midnight-ntwrk/midnight-js-testing":  "^2.0.2",
+                            "@types/react":  "^18.2.56",
+                            "@types/react-dom":  "^18.2.19",
+                            "@vitejs/plugin-react":  "^4.2.1",
+                            "autoprefixer":  "^10.4.17",
+                            "eslint":  "^8.56.0",
+                            "postcss":  "^8.4.35",
+                            "tailwindcss":  "^3.4.1",
+                            "typescript":  "^5.2.2",
+                            "vite":  "^5.1.4",
+                            "vite-plugin-top-level-await":  "^1.6.0",
+                            "vite-plugin-wasm":  "^3.6.0",
+                            "vitest":  "^4.1.11"
+                        }
+}
