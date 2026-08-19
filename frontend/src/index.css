@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .redaction-bar {
+    @apply relative overflow-hidden bg-cv-redaction text-transparent select-none inline-block align-bottom min-w-[200px];
+    border-radius: 2px;
+  }
+  
+  .redaction-bar::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-cv-surface/10 to-transparent animate-shimmer;
+    background-size: 1000px 100%;
+  }
+  
+  .redaction-revealed {
+    @apply relative inline-block overflow-hidden font-hash text-cv-text-primary bg-transparent break-all;
+  }
+  
+  .redaction-revealed::after {
+    content: '';
+    @apply absolute inset-0 bg-cv-redaction origin-right z-10 pointer-events-none animate-redact-wipe;
+    @media (prefers-reduced-motion: reduce) {
+      display: none;
+    }
+  }
+
+  /* Status stamps */
+  .status-stamp {
+    @apply inline-block font-mono font-bold uppercase tracking-[0.05em] px-2 py-0.5 border-2 -rotate-[2deg] text-xs transform origin-center;
+  }
+  .stamp-success {
+    @apply border-cv-success text-cv-success;
+  }
+  .stamp-pending {
+    @apply border-cv-pending text-cv-pending;
+  }
+  .stamp-error {
+    @apply border-cv-error text-cv-error;
+  }
+  .stamp-accent {
+    @apply border-cv-accent text-cv-accent;
+  }
+  
+  .stamp-tooltip {
+    @apply absolute -top-8 left-1/2 -translate-x-1/2 bg-cv-surface border-2 border-cv-accent text-cv-accent font-mono font-bold uppercase tracking-[0.05em] px-2 py-0.5 text-[10px] -rotate-[2deg] opacity-0 transition-opacity pointer-events-none z-50;
+  }
+  .group:active .stamp-tooltip, .group.copied .stamp-tooltip {
+    @apply opacity-100;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
