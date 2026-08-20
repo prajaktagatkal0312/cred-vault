@@ -39,7 +39,7 @@ Because zero-knowledge proving is extremely computationally intensive, Midnight 
 
 Start the official Midnight proof server in Docker on your machine:
 \\\ash
-docker run -d -p 6300:6300 ghcr.io/midnight-ntwrk/proof-server:latest
+docker run -d -p 6300:6300 midnightntwrk/proof-server:8.1.0
 \\\
 *(This will bind to \http://127.0.0.1:6300\ which the frontend uses by default).*
 
@@ -65,6 +65,8 @@ cd frontend
 npm run dev
 \\\
 Open \http://localhost:5173\ and connect your Lace Wallet to the **Preview** network.
+
+
 
 
 
